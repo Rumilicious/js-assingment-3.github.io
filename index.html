@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lorem and Buttons Example</title>
+  <style>
+    #user-input-paragraph {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .button-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+    .btn {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <p id="user-input-paragraph">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio veniam fugiat illo molestiae nobis natus ea deleniti magni, delectus animi itaque consectetur reiciendis sunt velit sapiente voluptates ex? Facilis, aspernatur.
+  </p>
+
+  
+
+  <div class="button-container">
+    <button class="btn" onclick="convertToUpperCase()">UpperCase</button>
+    <button class="btn" onclick="convertToLowerCase()">LowerCase</button>
+    <button class="btn" onclick="findText()">Search</button>
+    <button class="btn" onclick="getLength()">Length</button>
+  </div>
+
+  <p id="result-paragraph"></p>
+  <input id="search-input" type="text" placeholder="Enter the text to search" style="margin-bottom: 10px;">
+  <script>
+    function convertToUpperCase() {
+      const userInputParagraph = document.getElementById("user-input-paragraph");
+      userInputParagraph.textContent = userInputParagraph.textContent.toUpperCase();
+    }
+
+    function convertToLowerCase() {
+      const userInputParagraph = document.getElementById("user-input-paragraph");
+      userInputParagraph.textContent = userInputParagraph.textContent.toLowerCase();
+    }
+
+    function findText() {
+      const userInputParagraph = document.getElementById("user-input-paragraph");
+      const searchText = document.getElementById("search-input").value;
+      const matches = userInputParagraph.textContent.match(new RegExp(searchText, 'gi'));
+      if (matches) {
+        const length = matches.length;
+        const resultText = `${length} match(es) of '${searchText}' found in the text:`;
+        displaySearchResult(resultText);
+      } else {
+        const resultText = `No match for '${searchText}' found in the text.`;
+        displaySearchResult(resultText);
+      }
+    }
+
+    function getLength() {
+      const userInputParagraph = document.getElementById("user-input-paragraph");
+      const textLength = userInputParagraph.textContent.length;
+      const resultText = `Length of the text is: ${textLength}`;
+      displaySearchResult(resultText);
+    }
+
+    function displaySearchResult(text) {
+      const resultParagraph = document.getElementById("result-paragraph");
+      resultParagraph.textContent = text;
+    }
+  </script>
+</body>
+</html>
